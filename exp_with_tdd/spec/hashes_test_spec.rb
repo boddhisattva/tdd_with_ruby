@@ -18,4 +18,10 @@ describe HashesTest do
   	end
   end
 
+    describe "adding in hashes using blocks" do
+    it "should add key value pairs correctly" do
+    HashesTest.new.cal_sum2(@holidays_hash).should == 3
+    end
+  end
+
 end
