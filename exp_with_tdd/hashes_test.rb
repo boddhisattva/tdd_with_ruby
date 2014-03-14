@@ -11,4 +11,11 @@ class HashesTest
 	  end
 	  @sum
 	end
+
+	def cal_sum2(hash_obj)
+	  hash_obj.values.each do |value|
+	  	@sum = @sum + value
+	  end
+	  @sum
+	end
 end
