@@ -10,6 +10,9 @@ describe Book do
   end 
 
   describe "Book responds to" do
+
+    it "should respond wrt other attributes as well" #this is just a sample to show what is meant by pending wrt rspec
+
     it "responds to different messages wrt the book class" do
       Book.new("How to Code for the better","Jeff Roz","BPB Publication","20 March 2010").should respond_to :title
       # order needn be the same wrt which it has to respond to..
