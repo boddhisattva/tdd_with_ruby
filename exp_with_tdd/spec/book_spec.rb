@@ -6,6 +6,18 @@ describe Book do
     @book = Book.new "How to Code for the better","Jeff Roz","BPB Publication","20 March 2010"
     #puts "\n@book.title; = #{@book.title}\n" - Sample way of debugging..
   end 
+
+  describe "Book responds to" do
+    it "responds to different messages wrt the book class" do
+      Book.new("How to Code for the better","Jeff Roz","BPB Publication","20 March 2010").should respond_to :title
+      # order needn be the same wrt which it has to respond to..
+      Book.new("How to Code for the better","Jeff Roz","BPB Publication","20 March 2010").should respond_to :title, :publisher, :author,:release_date
+    end
+    it "responds to an array of authors - for more than one author for a book" do
+      Book.new("How to Code for the better","Jeff Roz","BPB Publication","20 March 2010").author.should be_kind_of String
+    end
+  end 
+
   
   describe "#new" do
     it 'takes 4 params and returns a book obj' do 
