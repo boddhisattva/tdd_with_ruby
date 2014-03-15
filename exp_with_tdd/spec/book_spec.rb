@@ -3,7 +3,9 @@ require 'spec_helper'
 describe Book do
   
   before :each do 
-    @book = Book.new "How to Code for the better","Jeff Roz","BPB Publication","20 March 2010"
+    #@book = Book.new
+    @book = Book.new("How to Code for the better","Jeff Roz","BPB Publication","20 March 2010")
+    #@book = Book.new("How to Code for the better","","BPB Publication","20 March 2010")
     #puts "\n@book.title; = #{@book.title}\n" - Sample way of debugging..
   end 
 
@@ -18,7 +20,15 @@ describe Book do
     end
   end 
 
-  
+  context "in the case of a bad argument to the author" do    
+    let(:bad_author) { {} }
+
+    it "should raise an error for a bad author" do   
+      expect {Book.new("How to Code for the better", bad_author,"BPB Publication","20 March 2010")}.to raise_error
+    end
+
+  end 
+
   describe "#new" do
     it 'takes 4 params and returns a book obj' do 
       @book.should be_instance_of Book
