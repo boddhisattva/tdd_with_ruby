@@ -35,6 +35,7 @@ class LinkList
 
 	def list_count
 		puts "List count - #{@elements.count}"
+    puts "test**"
 	end
 
 	a = LinkList.new(5)
