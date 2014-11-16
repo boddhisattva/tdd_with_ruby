@@ -18,9 +18,6 @@ class LinkList
   def add(val)
     current_pointer = @head
     while current_pointer.next_node != nil
-      puts "Val is - #{val}"
-      puts "Curr pointer data:- #{current_pointer.data}"
-      puts "Curr pointer, next node:- #{current_pointer.next_node}"
       current_pointer = current_pointer.next_node
     end
     current_pointer.next_node = get_node(val)
@@ -33,32 +30,27 @@ class LinkList
   end
 
   def get_head  
-    puts "Get Head - #{@head.data} | #{@head.next_node}"
+    puts "Head of linked list - #{@head.data} | #{@head.next_node}"
   end
 
   def list_elements
-    list_elements = []
+    elements = []
     current_pointer = @head
     while current_pointer != nil
-      list_elements << current_pointer.data
+      elements << current_pointer.data
       current_pointer = current_pointer.next_node
     end
-    list_elements.each do |element| 
-      print "#{element} -> "
-     end
+    puts  "Linked List elements - #{elements.join("->")}" #new learning wrt usage of join making way to add a character separating each of the elements in an array
   end
 
   def list_count
     count = 0
     current_pointer = @head
-    while current_pointer.next_node != nil
-      puts "#{current_pointer.data}"
+    while current_pointer != nil
       current_pointer = current_pointer.next_node
-      puts "hi"
       count += 1
     end
-    count += 1 # to accomodate the count of the last node whose next_node has a value nil and which thereby wasn't counted in the while loop
-    puts "List count - #{count}"
+    puts "List size - #{count}"
   end
 
   a = LinkList.new(5)
@@ -67,12 +59,8 @@ class LinkList
   a.add(55)
   a.add_beginning(16)
   a.add(39)
-  #a.add(23)
-  puts a
-  puts "a inspect - #{a.inspect}" 
-  puts "a head inspect - #{a.head.inspect}"
-  puts a.get_head
-  puts a.list_count
-  puts a.list_elements
+  a.get_head
+  a.list_count
+  a.list_elements
    
 end
