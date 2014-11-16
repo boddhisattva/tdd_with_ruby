@@ -3,6 +3,7 @@ class Node
 end
 
 class LinkList
+
   attr_accessor :head
   def initialize(val)
     @head = get_node(val)
@@ -32,22 +33,36 @@ class LinkList
 
   def list_elements
     elements = []
-    current_pointer = @head
-    while current_pointer != nil
-      elements << current_pointer.data
-      current_pointer = current_pointer.next_node
-    end
+    traverse_list_upto_cp_nil {elements << @current_pointer.data}
+
+    #current_pointer = @head
+    # while current_pointer != nil
+    #   elements << current_pointer.data
+    #   current_pointer = current_pointer.next_node
+    # end
+
     puts  "Linked List elements - #{elements.join("->")}" #new learning wrt usage of join making way to add a character separating each of the elements in an array
   end
 
   def list_count
     count = 0
-    current_pointer = @head
-    while current_pointer != nil
-      current_pointer = current_pointer.next_node
-      count += 1
-    end
+    traverse_list_upto_cp_nil {count += 1}
+
+    # current_pointer = @head
+
+    # while current_pointer != nil
+    #   count += 1
+    #   current_pointer = current_pointer.next_node  
+    # end
     puts "List size - #{count}"
+  end
+
+  def traverse_list_upto_cp_nil     #cp stands for current pointer
+    @current_pointer = @head
+    while @current_pointer != nil      
+      yield
+      @current_pointer = @current_pointer.next_node
+    end
   end
 
   def get_tail
@@ -72,4 +87,6 @@ class LinkList
   a.list_count
   a.list_elements
   a.get_tail 
+  # puts "a each - "
+  # puts a.each {|x| puts x}
 end
