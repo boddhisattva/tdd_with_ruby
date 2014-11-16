@@ -15,7 +15,7 @@ class LinkList
     @node
   end
 
-  def add(val)
+  def add_in_end(val)
     current_pointer = @head
     while current_pointer.next_node != nil
       current_pointer = current_pointer.next_node
@@ -54,11 +54,11 @@ class LinkList
   end
 
   a = LinkList.new(5)
-  a.add(3)
-  a.add(23)
-  a.add(55)
+  a.add_in_end(3)
+  a.add_in_end(23)
+  a.add_in_end(55)
   a.add_beginning(16)
-  a.add(39)
+  a.add_in_end(39)
   a.get_head
   a.list_count
   a.list_elements
