@@ -17,7 +17,7 @@ class LinkList
   end
 
   def add_in_end(val)
-    traverse_list
+    traverse_list ->{@current_pointer.next_node != nil}
     @current_pointer.next_node = get_node(val)
   end
 
@@ -33,28 +33,14 @@ class LinkList
 
   def list_elements
     elements = []
-    traverse_list_upto_cp_nil {elements << @current_pointer.data}
-
-    #current_pointer = @head
-    # while current_pointer != nil
-    #   elements << current_pointer.data
-    #   current_pointer = current_pointer.next_node
-    # end
-
+    traverse_list ->{@current_pointer != nil}, ->{elements << @current_pointer.data}
     puts  "Linked List elements - #{elements.join("->")}" #new learning wrt usage of join making way to add a character separating each of the elements in an array
   end
 
   def list_count
     count = 0
-    traverse_list_upto_cp_nil {count += 1}
-
-    # current_pointer = @head
-
-    # while current_pointer != nil
-    #   count += 1
-    #   current_pointer = current_pointer.next_node  
-    # end
-    puts "List size - #{count}"
+    traverse_list ->{@current_pointer != nil}, ->{count += 1}#new learning calling passing lambdas to a method
+    puts "List size - #{count}" # the above is done when we can't pass multiple blocks in ruby(wrt 1.9, when last tried)
   end
 
   def traverse_list_upto_cp_nil     #cp stands for current pointer
@@ -66,13 +52,14 @@ class LinkList
   end
 
   def get_tail
-    traverse_list
+    traverse_list ->{@current_pointer.next_node != nil}
     puts "Data in the Tail of linked list - #{@current_pointer.data}"
   end
 
-  def traverse_list
+  def traverse_list(traversal_condition,addn_operations=nil)
     @current_pointer = @head
-    while @current_pointer.next_node != nil      
+    while traversal_condition.() # an alternate way to executed a call to a lambda   
+      addn_operations.call  unless addn_operations.nil?
       @current_pointer = @current_pointer.next_node
     end
   end
@@ -87,6 +74,4 @@ class LinkList
   a.list_count
   a.list_elements
   a.get_tail 
-  # puts "a each - "
-  # puts a.each {|x| puts x}
 end
