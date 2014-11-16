@@ -16,11 +16,8 @@ class LinkList
   end
 
   def add_in_end(val)
-    current_pointer = @head
-    while current_pointer.next_node != nil
-      current_pointer = current_pointer.next_node
-    end
-    current_pointer.next_node = get_node(val)
+    traverse_list
+    @current_pointer.next_node = get_node(val)
   end
 
   def add_beginning(val)
@@ -53,6 +50,18 @@ class LinkList
     puts "List size - #{count}"
   end
 
+  def get_tail
+    traverse_list
+    puts "Data in the Tail of linked list - #{@current_pointer.data}"
+  end
+
+  def traverse_list
+    @current_pointer = @head
+    while @current_pointer.next_node != nil      
+      @current_pointer = @current_pointer.next_node
+    end
+  end
+
   a = LinkList.new(5)
   a.add_in_end(3)
   a.add_in_end(23)
@@ -62,5 +71,5 @@ class LinkList
   a.get_head
   a.list_count
   a.list_elements
-   
+  a.get_tail 
 end
