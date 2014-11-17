@@ -39,16 +39,8 @@ class LinkList
 
   def list_count
     count = 0
-    traverse_list ->{@current_pointer != nil}, ->{count += 1}#new learning calling passing lambdas to a method
-    puts "List size - #{count}" # the above is done when we can't pass multiple blocks in ruby(wrt 1.9, when last tried)
-  end
-
-  def traverse_list_upto_cp_nil     #cp stands for current pointer
-    @current_pointer = @head
-    while @current_pointer != nil      
-      yield
-      @current_pointer = @current_pointer.next_node
-    end
+    traverse_list ->{@current_pointer != nil}, ->{count += 1}#new learning - passing lambdas to a method
+    puts "List size - #{count}" # the above is done because we can't pass multiple blocks in ruby(wrt 1.9, when last tried)
   end
 
   def get_tail
