@@ -5,6 +5,10 @@ class Node
     @data = value
     @next_node = nil
   end
+  
+  def next?
+    !!next_node
+  end
 
   def inspect
     data
@@ -22,7 +26,7 @@ class LinkedList
 
   def tail
     select do |node|
-      node.next_node == nil
+      node.next?
     end.first
   end
 
