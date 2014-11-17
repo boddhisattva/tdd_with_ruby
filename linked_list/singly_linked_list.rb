@@ -1,28 +1,26 @@
 class Node
   attr_accessor :data, :next_node
+
+  def initialize(value)
+    @data = value
+    @next_node = nil
+  end
 end
 
 class LinkList
 
   attr_accessor :head
   def initialize(val)
-    @head = get_node(val)
-  end
-
-  def get_node(val)
-    @node = Node.new # each linked list has a node, 'has a' implying composition.
-    @node.data = val
-    @node.next_node = nil
-    @node
+    @head = Node.new(val) # each linked list has a node, 'has a' implying composition.
   end
 
   def add_in_end(val)
     traverse_list ->{@current_pointer.next_node != nil}
-    @current_pointer.next_node = get_node(val)
+    @current_pointer.next_node = Node.new(val)
   end
 
   def add_beginning(val)
-    new_node = get_node(val)    
+    new_node = Node.new(val)
     new_node.next_node = @head
     @head = new_node
   end
